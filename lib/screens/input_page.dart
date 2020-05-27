@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/calculator_brain.dart';
 import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/components/round_action_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -105,7 +106,7 @@ class _InputPageState extends State<InputPage> {
                           thumbShape:
                               RoundSliderThumbShape(enabledThumbRadius: 16),
                           overlayShape:
-                              RoundSliderOverlayShape(overlayRadius: 30),
+                              RoundSliderOverlayShape(overlayRadius: 25),
                           overlayColor: Color(0x29eb1555)),
                       child: Slider(
                         value: height.toDouble(),
@@ -215,8 +216,14 @@ class _InputPageState extends State<InputPage> {
             BottomButton(
               text: 'CALCULATE',
               onTap: () {
+                CalculatorBrain cal =
+                    CalculatorBrain(height: height, weight: weight);
                 setState(() {
-                  Navigator.pushNamed(context, '/first');
+                  Navigator.pushNamed(context, '/first', arguments: {
+                    "bmiResult": cal.calculateBMI(),
+                    "resultText": cal.getResult(),
+                    "interpretation": cal.getInterpretation()
+                  });
                 });
               },
             ),

@@ -16,7 +16,7 @@ class BottomButton extends StatelessWidget {
         child: Container(
           child: Center(
               child: Text(
-            'CALCULATE',
+            text,
             style: kBottomTextStyle,
           )),
           color: kBottomContainerColour,
